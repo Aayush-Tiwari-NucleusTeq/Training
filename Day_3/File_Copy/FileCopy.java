@@ -46,8 +46,9 @@ public class FileCopy {
             File sfile = new File(source);
             File dfile = new File(destination);
             copy_Content(sfile,dfile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Something went wrong from the file names " + e.getMessage());
+            // e.printStackTrace();
         }
     }
 }
