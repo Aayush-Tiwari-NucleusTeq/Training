@@ -21,6 +21,9 @@ public class Rectangle {
         catch (Exception e) {
             e.printStackTrace();
         }
+        finally{
+            sc.close();
+        }
 
     }
 }
