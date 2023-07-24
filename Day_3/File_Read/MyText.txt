@@ -1,0 +1,1 @@
+This is for the demonstration of getting the content from the file.
