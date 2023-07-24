@@ -25,6 +25,9 @@ class CreateRectangle{
         this.breadth = breadth;
     }
 
+    /**
+     * @return area
+     */
     public int RectangleArea(){
         return length * breadth;
     }
