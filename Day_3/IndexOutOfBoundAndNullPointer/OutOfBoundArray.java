@@ -29,6 +29,8 @@ public class OutOfBoundArray {
         } catch (Exception e) {
             e.printStackTrace();
             throw new IndexOutOfBoundOrNullPointerException("Enter the correct index for the value from an array");
+        } finally{
+            sc.close();
         }
     }
 }
