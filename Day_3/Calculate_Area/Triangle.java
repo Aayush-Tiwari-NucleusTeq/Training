@@ -25,6 +25,8 @@ public class Triangle {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
+        } finally{
+            sc.close();
         }
 
     }

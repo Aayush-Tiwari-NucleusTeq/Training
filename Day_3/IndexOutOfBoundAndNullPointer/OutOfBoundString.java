@@ -8,7 +8,7 @@ class IndexOutOfBoundOrNullPointerException extends Exception{
     }
 }
 
-public class OutOfBound {
+public class OutOfBoundString {
     public static void main(String[] args) throws IndexOutOfBoundOrNullPointerException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the string here : ");
