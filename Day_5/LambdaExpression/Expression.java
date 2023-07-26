@@ -2,6 +2,9 @@ package Day_5.LambdaExpression;
 
 import java.util.Scanner;
 
+/**
+ * Demo interface for resolving lambda expression
+ */
 interface Demo{
     public String remove_Vowels(String str);
 }
@@ -13,13 +16,13 @@ public class Expression {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the text you want ");
         String str = sc.nextLine();
+
+        /**
+         * Lambda expression
+         */
         Demo d = (value)->{
-            for (int i = 0; i < str.length(); i++) {
-                if(str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i'  || str.charAt(i) == 'o' || str.charAt(i) == 'u'){
-                    value = str.replace(str.charAt(i), '#');
-                }
-            }
-            return value;
+                value = str.replaceAll("[aeiouAEIOU]", "#");
+                return value;
         };
         String value = d.remove_Vowels(str);
         System.out.println("The String after removal of vowels is -> " + value); 
