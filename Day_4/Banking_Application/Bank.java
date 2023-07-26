@@ -36,60 +36,66 @@ package Day_4.Banking_Application;
 //     }
 // }
 
-class BankOperations{
-    public void Deposit(int num){
+class BankOperations {
+    public synchronized void Deposit(int num) {
         // System.out.println("I am the deposit method in bank work");
         try {
-            System.out.println(num + " is going to be deposited ...");
+            System.out.println(num + " is going to be deposited ..." + " [DEPOSIT THREAD] ");
             Thread.sleep(500);
-            System.out.println("The process of deposit is going on .... Processing ... Please wait");
+            System.out.println(
+                    "The process of deposit is going on .... Processing ... Please wait" + " [DEPOSIT THREAD] ");
             Thread.sleep(500);
-            System.out.println("Your amount is successfully deposited !!");
+            System.out.println("Your amount is successfully deposited !!" + " [DEPOSIT THREAD] ");
+            System.out.println();
         } catch (Exception e) {
             System.out.println("Some error is caught at the end !!");
         }
     }
 
-    public void Withdraw(int num){
+    public synchronized void Withdraw(int num) {
         // System.out.println("I am the withdraw method in bank work");
         try {
-            System.out.println(num + " is going to withdraw ...");
+            System.out.println(num + " is going to withdraw ..." + " [WITHDRAW THREAD] ");
             Thread.sleep(500);
-            System.out.println("The process of withdraw money is going on .... Processing ... Please wait");
+            System.out.println("The process of withdraw money is going on .... Processing ... Please wait"
+                    + " [WITHDRAW THREAD] ");
             Thread.sleep(500);
-            System.out.println("Your amount is successfully withdrawn !!");
+            System.out.println("Your amount is successfully withdrawn !!" + " [WITHDRAW THREAD] ");
+            System.out.println();
         } catch (Exception e) {
             System.out.println("Some error is caught at the end !!");
         }
     }
 
-    public void CheckBalance(int num){
+    public synchronized void CheckBalance(int num) {
         // System.out.println("I am the check balance method in bank work");
         try {
-            System.out.println("Going to server for checking the balance");
+            System.out.println("Going to server for checking the balance" + " [CHECKBALANCE THREAD] ");
             Thread.sleep(500);
-            System.out.println(num + " is your current balance");
+            System.out.println(num + " is your current balance" + " [CHECKBALANCE THREAD] ");
             Thread.sleep(500);
-            System.out.println("Thank you for using our online services... !!");
+            System.out.println("Thank you for using our online services... !!" + " [CHECKBALANCE THREAD] ");
+            System.out.println();
         } catch (Exception e) {
             System.out.println("Some error caught the server side !!");
         }
     }
 
-    public void PrintStatement(){
+    public synchronized void PrintStatement() {
         // System.out.println("I am the print statement method in bank work");
         try {
-            System.out.println("Going to server for checking the statement");
+            System.out.println("Going to server for checking the statement" + " [PRINTSTATEMENT THREAD] ");
             Thread.sleep(500);
             for (int i = 0; i < 10; i++) {
-                System.out.println("ICICI stat - " + i+1);
+                System.out.println("ICICI stat - " + i + 1 + " [PRINTSTATEMENT THREAD] ");
                 try {
                     Thread.sleep(400);
                 } catch (Exception e) {
                     System.out.println("Some unexpected error is caught in the server side");
                 }
             }
-            System.out.println("Thank you for the visit at our online services");
+            System.out.println("Thank you for the visit at our online services" + " [PRINTSTATEMENT THREAD] ");
+            System.out.println();
 
         } catch (Exception e) {
             System.out.println("Some error caught the server side !!");
@@ -97,46 +103,50 @@ class BankOperations{
     }
 }
 
-class DepositThread extends Thread{
+class DepositThread extends Thread {
     BankOperations bo;
-    DepositThread(BankOperations bo){
+
+    DepositThread(BankOperations bo) {
         this.bo = bo;
     }
 
-    public void run(){
+    public void run() {
         bo.Deposit(5000);
     }
 }
 
-class WithdrawThread extends Thread{
+class WithdrawThread extends Thread {
     BankOperations bo;
-    WithdrawThread(BankOperations bo){
+
+    WithdrawThread(BankOperations bo) {
         this.bo = bo;
     }
 
-    public void run(){
+    public void run() {
         bo.Withdraw(2000);
     }
 }
 
-class CheckBalanceThread extends Thread{
+class CheckBalanceThread extends Thread {
     BankOperations bo;
-    CheckBalanceThread(BankOperations bo){
+
+    CheckBalanceThread(BankOperations bo) {
         this.bo = bo;
     }
 
-    public void run(){
+    public void run() {
         bo.CheckBalance(50000);
     }
 }
 
-class PrintStatementThread extends Thread{
+class PrintStatementThread extends Thread {
     BankOperations bo;
-    PrintStatementThread(BankOperations bo){
+
+    PrintStatementThread(BankOperations bo) {
         this.bo = bo;
     }
 
-    public void run(){
+    public void run() {
         bo.PrintStatement();
     }
 }
@@ -153,7 +163,10 @@ public class Bank {
         DepositThread dthread = new DepositThread(bo);
         WithdrawThread wthread = new WithdrawThread(bo);
         CheckBalanceThread cthread = new CheckBalanceThread(bo);
+        PrintStatementThread pthread = new PrintStatementThread(bo);
         dthread.start();
+        wthread.start();
+        cthread.start();
+        pthread.start();
     }
 }
-
