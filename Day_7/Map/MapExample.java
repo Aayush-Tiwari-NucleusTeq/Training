@@ -34,10 +34,10 @@ public class MapExample {
         }
 
         System.out.println();
-        // System.out.println("Enter the value to check whether it is present or not");
-        // String value = sc.nextLine();
+        System.out.println("Enter the value to check whether it is present or not");
+        String value = sc.next();
 
-        if (myMap.containsValue("Tees")) {
+        if (myMap.containsValue(value)) {
             System.out.println("The value is present");
         } else {
             System.out.println("Value is not present in the map");
